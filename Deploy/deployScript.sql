@@ -1,3 +1,5 @@
+USE PROD;
+
 CREATE TABLE employee (
     PersonID int,
     LastName varchar(255),
@@ -8,4 +10,6 @@ CREATE TABLE employee (
 
 INSERT INTO employee (PersonID, FirstName, LastName, Address, City)
 VALUES (1, Asmaa, Sallam, Giza, Cairo);
+
+
 
