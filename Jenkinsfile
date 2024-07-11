@@ -15,7 +15,6 @@ pipeline {
         }
        stage('Check Parameterized Choice') {
             steps {
-                script {
                     def selectedRequiredTask = params.Required-Task
                     echo "Selected Required-Task: ${selectedRequiredTask}"
                     
@@ -42,7 +41,6 @@ pipeline {
                         default:
                             error "Unsupported choice: ${Required-Task}"
                     }
-                }
             }
         }
       }
