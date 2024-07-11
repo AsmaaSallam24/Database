@@ -1,9 +1,5 @@
 pipeline {
     agent any
-
-    parameters {
-        choice(name: 'Required_Task', choices: ['Deploy', 'Revert', 'Verify'], description: 'Select the Required_Task for database')
-    }
     
     stages {
       stage ("clean Up"){
@@ -25,7 +21,7 @@ pipeline {
                     echo "Selected Required-Task: ${selectedRequiredTask}"
                     
                     // Add your logic based on the selected environment
-                    switch (Required-Task) {
+                    switch (selectedRequiredTask) {
                         case 'Deploy':
                             echo "This is a Deploy choice"
                             dir("Database/Deploy")
