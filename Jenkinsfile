@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    parameters {
+        choice(name: 'Required_Task', choices: ['Deploy', 'Revert', 'Verify'], description: 'Select the Required_Task for database')
+    }
+    
     stages {
       stage ("clean Up"){
             steps {
