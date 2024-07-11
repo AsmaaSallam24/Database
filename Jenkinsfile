@@ -16,8 +16,8 @@ pipeline {
        stage('Check Parameterized Choice') {
             steps {
                 script {
-                    def selectedRequired-Task = params.Required-Task
-                    echo "Selected Required-Task: ${selectedRequired-Task}"
+                    def selectedRequiredTask = params.Required-Task
+                    echo "Selected Required-Task: ${selectedRequiredTask}"
                     
                     // Add your logic based on the selected environment
                     switch (Required-Task) {
