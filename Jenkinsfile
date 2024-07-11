@@ -4,7 +4,7 @@ pipeline {
 	
 	environment {
 			// Define database credentials and connection details
-			DB_HOST = '54.175.158.45'
+			DB_HOST = '54.226.91.70'
 			DB_PORT = '3306'
 			DB_NAME = 'PROD'
 			DB_USER = 'asmaa'
