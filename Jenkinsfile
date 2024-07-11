@@ -37,18 +37,9 @@ pipeline {
                             echo "This is a Deploy choice"
                             dir('Database/Deploy'){
                             sh "ls -la"
-														
-									stages {
-										stage('Run SQL Script') {
-											steps {
-												script {
-													// Example: Connect to MySQL and run SQL script
-													sh "mysql -h ${env.DB_HOST} -P ${env.DB_PORT} -u ${env.DB_USER} -p${env.DB_PASSWORD} ${env.DB_NAME} < deployScript.sql"
-												}
-											}
-										}
-									}
-									
+							// Example: Connect to MySQL and run SQL script
+							sh "mysql -h ${env.DB_HOST} -P ${env.DB_PORT} -u ${env.DB_USER} -p${env.DB_PASSWORD} ${env.DB_NAME} < deployScript.sql"
+	
 									// Define post-actions, notifications, etc. if required
 								}
 
@@ -58,6 +49,9 @@ pipeline {
                             echo " This is a Revert choice"
                             dir('Database/Revert'){
                             sh "ls -la"
+							// Example: Connect to MySQL and run SQL script
+							sh "mysql -h ${env.DB_HOST} -P ${env.DB_PORT} -u ${env.DB_USER} -p${env.DB_PASSWORD} ${env.DB_NAME} < revertScript.sql"
+	
                             }
                             // Add your commands for qa environment
                             break
@@ -65,6 +59,9 @@ pipeline {
                             echo "This is a Verify choice"
                             dir('Database/Verify'){
                             sh "ls -la"
+							// Example: Connect to MySQL and run SQL script
+							sh "mysql -h ${env.DB_HOST} -P ${env.DB_PORT} -u ${env.DB_USER} -p${env.DB_PASSWORD} ${env.DB_NAME} < verifyScript.sql"
+	
                             }
                             // Add your commands for production environment
                             break
