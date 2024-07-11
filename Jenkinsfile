@@ -24,19 +24,19 @@ pipeline {
                     switch (selectedRequiredTask) {
                         case 'Deploy':
                             echo "This is a Deploy choice"
-                            dir("Database/Deploy")
+                            dir('Database/Deploy')
                             sh "ls -la"
                             // Add your commands for dev environment
                             break
                         case 'Revert':
                             echo " This is a Revert choice"
-                            dir("Database/Revert")
+                            dir('Database/Revert')
                             sh "ls -la"
                             // Add your commands for qa environment
                             break
                         case 'Verify':
                             echo "This is a Verify choice"
-                            dir("Database/Verify")
+                            dir('Database/Verify')
                             sh "ls -la"
                             // Add your commands for production environment
                             break
