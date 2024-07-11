@@ -1,6 +1,17 @@
 pipeline {
     agent any
     
+	
+	environment {
+			// Define database credentials and connection details
+			DB_HOST = '54.175.158.45'
+			DB_PORT = '3306'
+			DB_NAME = 'PROD'
+			DB_USER = 'asmaa'
+			DB_PASSWORD = 'as2441966'
+				}
+				
+				
     stages {
       stage ("clean Up"){
             steps {
@@ -26,7 +37,21 @@ pipeline {
                             echo "This is a Deploy choice"
                             dir('Database/Deploy'){
                             sh "ls -la"
-                            }
+														
+									stages {
+										stage('Run SQL Script') {
+											steps {
+												script {
+													// Example: Connect to MySQL and run SQL script
+													sh "mysql -h ${env.DB_HOST} -P ${env.DB_PORT} -u ${env.DB_USER} -p${env.DB_PASSWORD} ${env.DB_NAME} < deployScript.sql"
+												}
+											}
+										}
+									}
+									
+									// Define post-actions, notifications, etc. if required
+								}
+
                             // Add your commands for dev environment
                             break
                         case 'Revert':
