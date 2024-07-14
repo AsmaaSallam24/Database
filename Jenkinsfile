@@ -15,7 +15,6 @@ pipeline {
     stages {
       stage ("clean Up"){
             steps {
-                sh "ls -la"
                 deleteDir()
                 sh "ls -la"
             }
@@ -23,6 +22,7 @@ pipeline {
         stage ("Clone Repo"){
             steps {
                 sh "git clone https://github.com/AsmaaSallam24/Database"
+		sh "ls -la"
             }
         }
        stage('Check Parameterized Choice') {
@@ -37,20 +37,19 @@ pipeline {
                             echo "This is a Deploy choice"
                             dir('Database/Deploy'){
                             sh "ls -la"
-							// Example: Connect to MySQL and run SQL script
-							sh "mysql -h ${env.DB_HOST} -P ${env.DB_PORT} -u ${env.DB_USER} -p${env.DB_PASSWORD} ${env.DB_NAME} < deployScript.sql"
-	
-									// Define post-actions, notifications, etc. if required
-								}
-
-                            // Add your commands for dev environment
+			    sh "cat deployScript.sql"
+			// Example: Connect to MySQL and run SQL script
+			    sh "mysql -h ${env.DB_HOST} -P ${env.DB_PORT} -u ${env.DB_USER} -p${env.DB_PASSWORD} ${env.DB_NAME} < deployScript.sql"
+				
+								}                          
                             break
                         case 'Revert':
                             echo " This is a Revert choice"
                             dir('Database/Revert'){
                             sh "ls -la"
-							// Example: Connect to MySQL and run SQL script
-							sh "mysql -h ${env.DB_HOST} -P ${env.DB_PORT} -u ${env.DB_USER} -p${env.DB_PASSWORD} ${env.DB_NAME} < revertScript.sql"
+			    sh "cat revertScript.sql"
+			// Example: Connect to MySQL and run SQL script
+			   sh "mysql -h ${env.DB_HOST} -P ${env.DB_PORT} -u ${env.DB_USER} -p${env.DB_PASSWORD} ${env.DB_NAME} < revertScript.sql"
 	
                             }
                             // Add your commands for qa environment
@@ -59,12 +58,12 @@ pipeline {
                             echo "This is a Verify choice"
                             dir('Database/Verify'){
                             sh "ls -la"
-							// Example: Connect to MySQL and run SQL script
-							sh "mysql -h ${env.DB_HOST} -P ${env.DB_PORT} -u ${env.DB_USER} -p${env.DB_PASSWORD} ${env.DB_NAME} < verifyScript.sql"
+			    sh "cat verifyScript.sql"
+			// Example: Connect to MySQL and run SQL script
+			    sh "mysql -h ${env.DB_HOST} -P ${env.DB_PORT} -u ${env.DB_USER} -p${env.DB_PASSWORD} ${env.DB_NAME} < verifyScript.sql"
 	
                             }
-                            // Add your commands for production environment
-                            break
+                             break
                         default:
                             error "Unsupported choice: ${Required-Task}"
                     }
